@@ -16,6 +16,7 @@ before_fork do |server, worker|
 
   if Rails.env.production?
     #@sidekiq_pid ||= spawn("bundle exec sidekiq -c 2")
+    spawn("mkdir -p tmp/pids")
     @sidekiq_pid ||= spawn("bundle exec sidekiq -C config/sidekiq.yml")
     Rails.logger.info('Spawned sidekiq #{@sidekiq_pid}')
   end
