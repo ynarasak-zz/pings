@@ -14,9 +14,14 @@ class PingWorker
     http.use_ssl = true
     p http.get(uri.request_uri)
 
-    uri = URI.parse("http://nara-pings.herokuapp.com/sidekiq/scheduled")
+    uri = URI.parse("https://nara-pings.herokuapp.com/sidekiq/scheduled")
     http = Net::HTTP.new(uri.host, uri.port)
     http.use_ssl = true
     p "self -> "+http.get(uri.request_uri)
+
+    uri = URI.parse("http://studio-c25.herokuapp.com/ping.html")
+    http = Net::HTTP.new(uri.host, uri.port)
+    http.use_ssl = true
+    p "ping -> "+http.get(uri.request_uri)
   end
 end
